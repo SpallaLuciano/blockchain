@@ -8,6 +8,27 @@ transactionRouter.all('/*', (req, res, next) => {
   next();
 });
 
+transactionRouter.get('/id/:transactionId', (req, res) => {
+  const transactionId = req.params.transactionId;
+
+  const transactionData = blockchain.getTransaction(transactionId);
+
+  res.json({
+    transaction: transactionData.transaction,
+    block: transactionData.block
+  });
+});
+
+transactionRouter.get('/address/:address', (req, res) => {
+  const address = req.params.address;
+
+  const addressData = blockchain.getAddressData(address);
+
+  res.json({
+    addressData: addressData
+  });
+});
+
 transactionRouter.post('/', (req, res) => {
   try {
     const index = blockchain.addTransaction(req.body.transaction);

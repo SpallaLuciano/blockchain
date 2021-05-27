@@ -56,7 +56,7 @@ nodeRouter.post('/register-and-broadcast', (req, res) => {
         }),
         headers: {
           'Content-Type': 'application/json',
-        },
+        }
       })
     );
   });
